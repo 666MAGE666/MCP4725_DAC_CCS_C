@@ -1,0 +1,46 @@
+
+ROM used:   184/4096 (4%)
+            184/4096 (4%) including unused fragments
+
+            0.3 Average locations per line
+            10.2 Average locations per statement
+
+RAM used:   55/368 (15%) at main() level
+            55/368 (15%) worst case
+
+Stack used: 0 worst case (0 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   49    18 100  PWN_SINUS.c
+   10     0   0  PWN_SINUS.h
+  647     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\16F88.h
+----- -----
+  706    18 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0    180  98    1    485  6.2  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              18
+    Comments                128
+    Volume (V)              487
+    Difficulty (D)          6.0
+    Effort to implement (E) 2927
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    43
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   180  1864  
+00800-00FFF     0  2048  
+
+
+

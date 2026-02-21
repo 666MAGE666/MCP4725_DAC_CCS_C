@@ -1,0 +1,54 @@
+[PROJECT]
+Target=PWN_SINUS.hex
+Processor_Text=PIC16F88
+CCSVerions=5.049
+Compiler=PCM
+CCSVersion=5.049
+[Target Data]
+FileList=PWN_SINUS.c
+[Directories]
+Include=
+[C:\Users\ACER\Desktop\MCP4725_DAC_CCS_C\PWN_SINUS]
+Type=4
+[mru-list]
+1=PWN_SINUS.c
+
+[ProjectLog]
+Days=2
+D1=02-01-2024
+D1_L=15
+D1_L1=[60210]Project Opened.
+D1_L2=[60213]Started Editing.
+D1_L3=[61548]Stopped Editing.
+D1_L4=[62724]Started Editing.
+D1_L5=[64636]Stopped Editing.
+D1_L6=[64974]Started Editing.
+D1_L7=[65367]Stopped Editing.
+D1_L8=[66120]Started Editing.
+D1_L9=[67054]Stopped Editing.
+D1_L10=[67312]Started Editing.
+D1_L11=[67703]Stopped Editing.
+D1_L12=[69200]Started Editing.
+D1_L13=[69519]Stopped Editing.
+D1_L14=[70343]Started Editing.
+D1_L15=[70665]Stopped Editing.
+TotalEdit=59
+TotalDebug=0
+D2=03-01-2024
+D2_E=59
+D2_D=0
+D2_L=1
+D2_L1=[3750]Project Closed.
+
+[Opened Files]
+1=PWN_SINUS.c
+t1=5
+Count=1
+[PWN_SINUS.c]
+Type=4
+
+[defines]
+buildcount=32
+[Units]
+Count=1
+1=PWN_SINUS (main)

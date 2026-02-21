@@ -1,0 +1,275 @@
+CCS PCM C Compiler, Version 5.049, 5967               02-Oca-24 19:32
+
+               Filename:   C:\Users\ACER\Desktop\MCP4725_DAC_CCS_C\PWN_SINUS.lst
+
+               ROM used:   184 words (4%)
+                           Largest free fragment is 2048
+               RAM used:   55 (15%) at main() level
+                           55 (15%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #include <PWN_SINUS.h> 
+.................... #include <16F88.h> 
+.................... //////////// Standard Header file for the PIC16F88 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F88 
+....................  
+.................... #list 
+....................  
+.................... #device ADC=10 
+....................  
+.................... #FUSES NOMCLR                	//Master Clear pin used for I/O 
+.................... #FUSES NOBROWNOUT            	//No brownout reset 
+.................... #FUSES NOLVP                 	//No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+....................  
+.................... #use delay(internal=4000000) 
+....................  
+....................  
+.................... int i ; 
+.................... unsigned int sin_table[48]= 
+.................... { 
+.................... 0, 
+.................... 10,20,30,40,50,60,70, 80,90,100, 
+.................... 110,120,130,140,150,160,170,180,190,200, 
+.................... 210,220,230,240,230,220,210, 
+.................... 200,190,180,170,160,150,140,130,120,110, 
+.................... 100,90,80,70,60,50,40,30,20,10}; 
+*
+0014:  BCF    03.5
+0015:  CLRF   21
+0016:  MOVLW  0A
+0017:  MOVWF  22
+0018:  MOVLW  14
+0019:  MOVWF  23
+001A:  MOVLW  1E
+001B:  MOVWF  24
+001C:  MOVLW  28
+001D:  MOVWF  25
+001E:  MOVLW  32
+001F:  MOVWF  26
+0020:  MOVLW  3C
+0021:  MOVWF  27
+0022:  MOVLW  46
+0023:  MOVWF  28
+0024:  MOVLW  50
+0025:  MOVWF  29
+0026:  MOVLW  5A
+0027:  MOVWF  2A
+0028:  MOVLW  64
+0029:  MOVWF  2B
+002A:  MOVLW  6E
+002B:  MOVWF  2C
+002C:  MOVLW  78
+002D:  MOVWF  2D
+002E:  MOVLW  82
+002F:  MOVWF  2E
+0030:  MOVLW  8C
+0031:  MOVWF  2F
+0032:  MOVLW  96
+0033:  MOVWF  30
+0034:  MOVLW  A0
+0035:  MOVWF  31
+0036:  MOVLW  AA
+0037:  MOVWF  32
+0038:  MOVLW  B4
+0039:  MOVWF  33
+003A:  MOVLW  BE
+003B:  MOVWF  34
+003C:  MOVLW  C8
+003D:  MOVWF  35
+003E:  MOVLW  D2
+003F:  MOVWF  36
+0040:  MOVLW  DC
+0041:  MOVWF  37
+0042:  MOVLW  E6
+0043:  MOVWF  38
+0044:  MOVLW  F0
+0045:  MOVWF  39
+0046:  MOVLW  E6
+0047:  MOVWF  3A
+0048:  MOVLW  DC
+0049:  MOVWF  3B
+004A:  MOVLW  D2
+004B:  MOVWF  3C
+004C:  MOVLW  C8
+004D:  MOVWF  3D
+004E:  MOVLW  BE
+004F:  MOVWF  3E
+0050:  MOVLW  B4
+0051:  MOVWF  3F
+0052:  MOVLW  AA
+0053:  MOVWF  40
+0054:  MOVLW  A0
+0055:  MOVWF  41
+0056:  MOVLW  96
+0057:  MOVWF  42
+0058:  MOVLW  8C
+0059:  MOVWF  43
+005A:  MOVLW  82
+005B:  MOVWF  44
+005C:  MOVLW  78
+005D:  MOVWF  45
+005E:  MOVLW  6E
+005F:  MOVWF  46
+0060:  MOVLW  64
+0061:  MOVWF  47
+0062:  MOVLW  5A
+0063:  MOVWF  48
+0064:  MOVLW  50
+0065:  MOVWF  49
+0066:  MOVLW  46
+0067:  MOVWF  4A
+0068:  MOVLW  3C
+0069:  MOVWF  4B
+006A:  MOVLW  32
+006B:  MOVWF  4C
+006C:  MOVLW  28
+006D:  MOVWF  4D
+006E:  MOVLW  1E
+006F:  MOVWF  4E
+0070:  MOVLW  14
+0071:  MOVWF  4F
+0072:  MOVLW  0A
+0073:  MOVWF  50
+....................  
+....................  
+.................... void main() 
+*
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  MOVLW  62
+0008:  BSF    03.5
+0009:  MOVWF  0F
+000A:  CLRF   10
+000B:  MOVF   0F,W
+000C:  BCF    1F.4
+000D:  BCF    1F.5
+000E:  MOVF   1B,W
+000F:  ANDLW  80
+0010:  MOVWF  1B
+0011:  MOVLW  07
+0012:  MOVWF  1C
+0013:  BCF    03.7
+.................... { 
+....................    setup_timer_2(T2_DIV_BY_16,249,1);      //4,0 ms overflow, 4,0 ms interrupt 
+*
+0074:  MOVLW  00
+0075:  MOVWF  78
+0076:  IORLW  06
+0077:  MOVWF  12
+0078:  MOVLW  F9
+0079:  BSF    03.5
+007A:  MOVWF  12
+....................  
+....................    setup_ccp1(CCP_PWM); 
+007B:  BCF    06.0
+007C:  BCF    03.5
+007D:  BCF    06.0
+007E:  MOVLW  0C
+007F:  MOVWF  17
+....................    set_pwm1_duty(0); 
+0080:  CLRF   15
+....................  
+....................    while(TRUE) 
+....................    { 
+....................        
+....................          for(i=0 ; i<=47 ; i++) 
+0081:  CLRF   20
+0082:  MOVF   20,W
+0083:  SUBLW  2F
+0084:  BTFSS  03.0
+0085:  GOTO   0B6
+....................          { 
+....................             delay_us(380); 
+0086:  MOVLW  7E
+0087:  MOVWF  77
+0088:  DECFSZ 77,F
+0089:  GOTO   088
+008A:  NOP
+....................             setup_ccp1(CCP_PWM); 
+008B:  BSF    03.5
+008C:  BCF    06.0
+008D:  BCF    03.5
+008E:  BCF    06.0
+008F:  MOVLW  0C
+0090:  MOVWF  17
+....................             set_pwm1_duty(sin_table[i]); 
+0091:  MOVLW  21
+0092:  ADDWF  20,W
+0093:  MOVWF  04
+0094:  BCF    03.7
+0095:  MOVF   00,W
+0096:  MOVWF  51
+0097:  MOVWF  15
+....................           
+....................           
+....................                         if(i>=0 && i<=23) 
+0098:  MOVF   20,W
+0099:  SUBLW  17
+009A:  BTFSS  03.0
+009B:  GOTO   0A4
+....................                {   
+....................                   output_high(pin_a6); 
+009C:  BSF    03.5
+009D:  BCF    05.6
+009E:  BCF    03.5
+009F:  BSF    05.6
+....................                   output_low(pin_a7);                   
+00A0:  BSF    03.5
+00A1:  BCF    05.7
+00A2:  BCF    03.5
+00A3:  BCF    05.7
+....................                } 
+....................  
+....................                if(i>=24 && i<=47) 
+00A4:  MOVF   20,W
+00A5:  SUBLW  17
+00A6:  BTFSC  03.0
+00A7:  GOTO   0B4
+00A8:  MOVF   20,W
+00A9:  SUBLW  2F
+00AA:  BTFSS  03.0
+00AB:  GOTO   0B4
+....................                {   
+....................                   output_low(pin_a6); 
+00AC:  BSF    03.5
+00AD:  BCF    05.6
+00AE:  BCF    03.5
+00AF:  BCF    05.6
+....................                   output_high(pin_a7);                   
+00B0:  BSF    03.5
+00B1:  BCF    05.7
+00B2:  BCF    03.5
+00B3:  BSF    05.7
+....................                } 
+00B4:  INCF   20,F
+00B5:  GOTO   082
+....................          } 
+00B6:  GOTO   081
+....................  
+....................  
+....................  
+....................       //TODO: User Code 
+....................    } 
+....................  
+.................... } 
+00B7:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F10   NOWDT PUT INTRC_IO NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB0 NOPROTECT
+   Word  2: 0003   FCMEN IESO

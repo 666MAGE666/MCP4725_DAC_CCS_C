@@ -1,0 +1,4 @@
+>>> Warning 225 "MCP4725_DAC_16f1938.c" Line 10(11,21): Duplicate #define
+      Memory usage:   ROM=11%      RAM=40% - 50%
+      0 Errors,  1 Warnings.
+Build Successful.
